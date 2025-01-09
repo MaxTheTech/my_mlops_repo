@@ -34,6 +34,7 @@ training:
   seed: 42
   model_checkpoint_path: "models/trained_model_1.pth"
   training_statistics_path: "reports/figures/training_statistics.png"
+  train_val_split: 0.8
   epochs: 10
   batch_size: 32
 

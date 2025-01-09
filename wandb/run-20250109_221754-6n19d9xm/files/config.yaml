@@ -1,0 +1,270 @@
+_wandb:
+    value:
+        cli_version: 0.19.2
+        m:
+            - "1": images.size
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": trainer/global_step
+              "6":
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_end/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": epoch
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.sha256
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.height
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_start/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": train_loss_step
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": train_acc_step
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": val_loss
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_start/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_end/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_end/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_start/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_end/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": val_acc
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": train_loss_epoch
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_start/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.caption
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_start/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_start/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_start/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_end/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_end/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": test_acc
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.width
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_train_batch_start/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_end/M1_swap_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_end/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": test_loss
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": lr-Adam
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images._type
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.path
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_validation_batch_end/M1_vm_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": train_acc_epoch
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": DeviceStatsMonitor.on_test_batch_start/M1_percent
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": images.format
+              "5": 2
+              "6":
+                - 1
+                - 3
+              "7": []
+        python_version: 3.10.8
+        t:
+            "1":
+                - 1
+                - 9
+                - 50
+                - 55
+                - 103
+            "2":
+                - 1
+                - 9
+                - 41
+                - 50
+                - 55
+                - 103
+            "3":
+                - 7
+                - 15
+                - 16
+                - 23
+                - 55
+                - 66
+            "4": 3.10.8
+            "5": 0.19.2
+            "8":
+                - 5
+            "12": 0.19.2
+            "13": darwin-arm64
+analysis:
+    value: '{''embeddings_path'': ''reports/figures/embeddings.png''}'
+batch_size:
+    value: 32
+epochs:
+    value: 10
+loss:
+    value: '{''type'': ''CrossEntropyLoss''}'
+lr:
+    value: 0.001
+model:
+    value: '{''conv_layers'': [{''filters'': 32, ''kernel_size'': 3, ''stride'': 1}, {''filters'': 64, ''kernel_size'': 3, ''stride'': 1}, {''filters'': 128, ''kernel_size'': 3, ''stride'': 1}], ''pool_size'': 2, ''pool_stride'': 2, ''dropout_rate'': 0.5, ''input_channels'': 1, ''output_dim'': 10}'
+optimizer:
+    value: '{''type'': ''Adam'', ''lr'': 0.001}'
+preprocessing:
+    value: '{''normalize'': True}'
+training:
+    value: '{''seed'': 42, ''model_checkpoint_path'': ''models/trained_model_1.pth'', ''training_statistics_path'': ''reports/figures/training_statistics.png'', ''train_val_split'': 0.8, ''epochs'': 10, ''batch_size'': 32}'
