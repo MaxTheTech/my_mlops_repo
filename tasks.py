@@ -34,7 +34,7 @@ def dev_requirements(ctx: Context) -> None:
 @task
 def preprocess_data(ctx: Context) -> None:
     """Preprocess data."""
-    ctx.run(f"python src/{PROJECT_NAME}/data.py data/raw data/processed", echo=True, pty=not WINDOWS)
+    ctx.run(f"python src/{PROJECT_NAME}/data.py", echo=True, pty=not WINDOWS)
 
 
 @task
@@ -44,15 +44,15 @@ def train(ctx: Context) -> None:
 
 
 @task
-def evaluate(ctx: Context, model_checkpoint: str) -> None:
+def evaluate(ctx: Context) -> None:
     """Evaluate model."""
-    ctx.run(f"python src/{PROJECT_NAME}/evaluate.py {model_checkpoint}", echo=True, pty=not WINDOWS)
+    ctx.run(f"python src/{PROJECT_NAME}/evaluate.py", echo=True, pty=not WINDOWS)
 
 
 @task
 def visualize(ctx: Context, model_checkpoint: str) -> None:
     """Visualize model predictions."""
-    ctx.run(f"python src/{PROJECT_NAME}/visualize.py {model_checkpoint}", echo=True, pty=not WINDOWS)
+    ctx.run(f"python src/{PROJECT_NAME}/visualize.py", echo=True, pty=not WINDOWS)
 
 
 @task

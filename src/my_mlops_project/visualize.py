@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt
 import torch
-import typer
+import hydra
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 from my_mlops_project.model import MyAwesomeModel
 
 
-def visualize(model_checkpoint: str, figure_name: str = "embeddings.png") -> None:
+@hydra.main(config_path="../../configs", config_name="config")
+def visualize(cfg) -> None:
     """Visualize model predictions."""
     model: torch.nn.Module = MyAwesomeModel()
-    model.load_state_dict(torch.load(f"models/{model_checkpoint}"))
+    model.load_state_dict(torch.load(cfg.training.model_checkpoint_path))
     model.eval()
     model.fc = torch.nn.Identity()
 
@@ -39,8 +40,8 @@ def visualize(model_checkpoint: str, figure_name: str = "embeddings.png") -> Non
         mask = targets == i
         plt.scatter(embeddings[mask, 0], embeddings[mask, 1], label=str(i))
     plt.legend()
-    plt.savefig(f"reports/figures/{figure_name}")
+    plt.savefig(cfg.analysis.embeddings_path)
 
 
 if __name__ == "__main__":
-    typer.run(visualize)
+    visualize()

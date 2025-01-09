@@ -1,0 +1,12 @@
+training:
+  epochs: 10
+  batch_size: 32
+  seed: 42
+optimizer:
+  type: Adam
+  lr: 0.001
+loss:
+  type: CrossEntropyLoss
+paths:
+  model_save: models/model.pth
+  figures: reports/figures/training_statistics.png

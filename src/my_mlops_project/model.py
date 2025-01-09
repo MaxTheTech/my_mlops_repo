@@ -1,36 +1,57 @@
 import torch
 from torch import nn
-
+import hydra
+from omegaconf import DictConfig
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
 
-    def __init__(self) -> None:
+    def __init__(self, cfg: DictConfig) -> None:
         super().__init__()
-        self.conv1 = nn.Conv2d(1, 32, 3, 1)
-        self.conv2 = nn.Conv2d(32, 64, 3, 1)
-        self.conv3 = nn.Conv2d(64, 128, 3, 1)
-        self.dropout = nn.Dropout(0.5)
-        self.fc1 = nn.Linear(128, 10)
+        
+        layers = []
+        in_channels = cfg.model.input_channels
+        
+        # Build conv layers dynamically from config
+        for conv in cfg.model.conv_layers:
+            layers.append(
+                nn.Conv2d(
+                    in_channels, 
+                    conv.filters, 
+                    conv.kernel_size, 
+                    conv.stride
+                )
+            )
+            in_channels = conv.filters
+            
+        self.conv_layers = nn.ModuleList(layers)
+        self.dropout = nn.Dropout(cfg.model.dropout_rate)
+        self.fc1 = nn.Linear(cfg.model.conv_layers[-1].filters, cfg.model.output_dim)
+        
+        # Store pooling parameters
+        self.pool_size = cfg.model.pool_size
+        self.pool_stride = cfg.model.pool_stride
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Forward pass."""
-        x = torch.relu(self.conv1(x))
-        x = torch.max_pool2d(x, 2, 2)
-        x = torch.relu(self.conv2(x))
-        x = torch.max_pool2d(x, 2, 2)
-        x = torch.relu(self.conv3(x))
-        x = torch.max_pool2d(x, 2, 2)
+        for conv in self.conv_layers:
+            x = torch.relu(conv(x))
+            x = torch.max_pool2d(x, self.pool_size, self.pool_stride)
+        
         x = torch.flatten(x, 1)
         x = self.dropout(x)
         return self.fc1(x)
 
 
-if __name__ == "__main__":
-    model = MyAwesomeModel()
+@hydra.main(config_path="../../configs", config_name="config")
+def main(cfg: DictConfig):
+    model = MyAwesomeModel(cfg)
     print(f"Model architecture: {model}")
     print(f"Number of parameters: {sum(p.numel() for p in model.parameters())}")
 
-    dummy_input = torch.randn(1, 1, 28, 28)
+    dummy_input = torch.randn(1, cfg.model.input_channels, 28, 28)
     output = model(dummy_input)
     print(f"Output shape: {output.shape}")
+
+if __name__ == "__main__":
+    main()
