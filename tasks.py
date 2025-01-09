@@ -50,7 +50,7 @@ def evaluate(ctx: Context) -> None:
 
 
 @task
-def visualize(ctx: Context, model_checkpoint: str) -> None:
+def visualize(ctx: Context) -> None:
     """Visualize model predictions."""
     ctx.run(f"python src/{PROJECT_NAME}/visualize.py", echo=True, pty=not WINDOWS)
 

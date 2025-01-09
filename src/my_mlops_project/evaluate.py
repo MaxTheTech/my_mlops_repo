@@ -11,9 +11,9 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.ba
 def evaluate(cfg) -> None:
     """Evaluate a trained model."""
     print("Evaluating like my life depended on it")
-    print(cfg.evaluate.model_checkpoint)
+    print(cfg.training.model_checkpoint_path)
 
-    model = MyAwesomeModel().to(DEVICE)
+    model = MyAwesomeModel(cfg).to(DEVICE)
     model.load_state_dict(torch.load(cfg.training.model_checkpoint_path))
 
     _, test_set = corrupt_mnist()

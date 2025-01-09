@@ -10,7 +10,7 @@ from my_mlops_project.model import MyAwesomeModel
 @hydra.main(config_path="../../configs", config_name="config")
 def visualize(cfg) -> None:
     """Visualize model predictions."""
-    model: torch.nn.Module = MyAwesomeModel()
+    model: torch.nn.Module = MyAwesomeModel(cfg)
     model.load_state_dict(torch.load(cfg.training.model_checkpoint_path))
     model.eval()
     model.fc = torch.nn.Identity()
