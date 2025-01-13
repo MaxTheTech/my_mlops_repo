@@ -122,7 +122,7 @@ class MyAwesomeModel(pl.LightningModule):
         return loss
 
 
-@hydra.main(config_path="../../configs", config_name="config")
+@hydra.main(version_base="1.1", config_path="../../configs", config_name="config")
 def main(cfg):
     # Create model
     model = MyAwesomeModel(cfg)

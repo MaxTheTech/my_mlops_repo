@@ -43,7 +43,7 @@ class MyAwesomeModel(nn.Module):
         return self.fc1(x)
 
 
-@hydra.main(config_path="../../configs", config_name="config")
+@hydra.main(version_base="1.1", config_path="../../configs", config_name="config")
 def main(cfg: DictConfig):
     model = MyAwesomeModel(cfg)
     print(f"Model architecture: {model}")

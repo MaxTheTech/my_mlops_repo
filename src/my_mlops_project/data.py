@@ -6,7 +6,7 @@ def normalize(images: torch.Tensor) -> torch.Tensor:
     """Normalize images."""
     return (images - images.mean()) / images.std()
 
-@hydra.main(config_path="../../configs", config_name="config")
+@hydra.main(version_base="1.1", config_path="../../configs", config_name="config")
 def preprocess_data(cfg) -> None:
     """Process raw data and save it to processed directory."""
     train_images, train_target = [], []

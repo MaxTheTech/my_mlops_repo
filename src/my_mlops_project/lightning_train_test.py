@@ -40,7 +40,7 @@ class MetricsCallback(pl.Callback):
             'train_acc': trainer.callback_metrics.get('train_acc', None)
         }
 
-@hydra.main(version_base=None, config_path="../../configs", config_name="config")
+@hydra.main(version_base="1.1", config_path="../../configs", config_name="config")
 def train(cfg) -> None:
     """Train a model on MNIST using PyTorch Lightning."""
     print("Training day and night")
@@ -96,13 +96,13 @@ def train(cfg) -> None:
     # Define callbacks
     callbacks = [
         # Save best models based on validation loss
-        ModelCheckpoint(
-            dirpath="models",
-            filename='{epoch}-{val_loss:.2f}',
-            monitor='val_loss',
-            mode='min',
-            save_top_k=3
-        ),
+        # ModelCheckpoint(
+        #     dirpath="models",
+        #    filename='{epoch}-{val_loss:.2f}',
+        #     monitor='val_loss',
+        #     mode='min',
+        #     save_top_k=3
+        # ),
         EarlyStopping(
             monitor="val_loss", patience=3, verbose=True, mode="min"
         ),
@@ -121,7 +121,7 @@ def train(cfg) -> None:
         logger=wandb_logger,
         callbacks=callbacks,
         # Automatically find best learning device (GPU/CPU)
-        accelerator='auto',
+        accelerator='mps' if torch.backends.mps.is_available() else 'auto',
         devices=1,
         # Log gradients and model topology
         enable_model_summary=True,
@@ -149,7 +149,7 @@ def train(cfg) -> None:
         type="model",
         description="A model trained to classify corrupt MNIST images",
         metadata={
-            "best_val_loss": trainer.checkpoint_callback.best_model_score.item(),
+            # "best_val_loss": trainer.checkpoint_callback.best_model_score.item(),
             "final_train_loss": final_metrics.get('train_loss', None),
             "final_train_acc": final_metrics.get('train_acc', None)
         }
