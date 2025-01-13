@@ -1,11 +1,11 @@
-import torch
 import hydra
+import torch
 
-from my_mlops_project.model import MyAwesomeModel
 from data import corrupt_mnist
-
+from my_mlops_project.model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
 
 @hydra.main(config_path="../../configs", config_name="config")
 def evaluate(cfg) -> None:

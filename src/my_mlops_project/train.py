@@ -1,15 +1,15 @@
-import matplotlib.pyplot as plt
-import torch
 import hydra
-import wandb
+import matplotlib.pyplot as plt
 import numpy as np
-
-from my_mlops_project.model import MyAwesomeModel
-from my_mlops_project.data import corrupt_mnist
+import torch
 from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision_score, recall_score
 
+import wandb
+from my_mlops_project.data import corrupt_mnist
+from my_mlops_project.model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
 
 @hydra.main(version_base=None, config_path="../../configs", config_name="config")
 def train(cfg) -> None:
@@ -18,7 +18,7 @@ def train(cfg) -> None:
 
     # Set random seeds for reproducibility
     torch.manual_seed(cfg.training.seed)
-    
+
     # Print hyperparameters
     print(f"Learning rate: {cfg.optimizer.lr}")
     print(f"Batch size: {cfg.training.batch_size}")
@@ -40,7 +40,7 @@ def train(cfg) -> None:
     optimizer = getattr(torch.optim, cfg.optimizer.type)(model.parameters(), lr=cfg.optimizer.lr)
 
     statistics = {"train_loss": [], "train_accuracy": []}
-    for epoch in range(1, cfg.training.epochs+1):
+    for epoch in range(1, cfg.training.epochs + 1):
         model.train()
 
         preds, targets = [], []
@@ -55,7 +55,7 @@ def train(cfg) -> None:
 
             accuracy = (y_pred.argmax(dim=1) == target).float().mean().item()
             statistics["train_accuracy"].append(accuracy)
-            
+
             wandb.log({"train_loss": loss.item(), "train_accuracy": accuracy})
 
             preds.append(y_pred.detach().cpu())
@@ -88,22 +88,19 @@ def train(cfg) -> None:
                 preds[:, class_id],
                 name=f"Class {class_id}",
                 plot_chance_level=(class_id == 2),
-                color=colors[class_id]
+                color=colors[class_id],
             )
 
         # Enhance the plot with proper formatting
-        plt.title(f'ROC Curves for All Classes - Epoch {epoch}')
-        plt.xlabel('False Positive Rate')
-        plt.ylabel('True Positive Rate')
+        plt.title(f"ROC Curves for All Classes - Epoch {epoch}")
+        plt.xlabel("False Positive Rate")
+        plt.ylabel("True Positive Rate")
         plt.grid(True, alpha=0.3)
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        plt.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
 
         # Correctly log the plot to wandb
-        wandb.log({
-            "roc_curves": wandb.Image(plt),
-            "epoch": epoch
-        })
-        
+        wandb.log({"roc_curves": wandb.Image(plt), "epoch": epoch})
+
         # Clean up to prevent memory leaks
         plt.close()
 
