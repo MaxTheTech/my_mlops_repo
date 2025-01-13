@@ -1,6 +1,6 @@
+import hydra
 import matplotlib.pyplot as plt
 import torch
-import hydra
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 

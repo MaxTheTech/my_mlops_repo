@@ -6,6 +6,7 @@ WINDOWS = os.name == "nt"
 PROJECT_NAME = "my_mlops_project"
 PYTHON_VERSION = "3.10"
 
+
 # Setup commands
 @task
 def create_environment(ctx: Context) -> None:
@@ -15,6 +16,7 @@ def create_environment(ctx: Context) -> None:
         echo=True,
         pty=not WINDOWS,
     )
+
 
 @task
 def requirements(ctx: Context) -> None:
